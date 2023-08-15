@@ -1,0 +1,19 @@
+import re
+with open('fast.lib', 'r') as file:
+    liberty_content = file.read()
+cell_sections = re.split(r'\bcell\s+\(\w+\)\s*{', liberty_content)[1:]
+pin_pattern = r'pin\((\w+)\)'
+pattern=r'\bcell\s+\((\w+)\)\s*'
+matched=re.findall(pattern,liberty_content)
+lst = []
+for i in matched:
+    lst.append(i)
+i = 0
+for cell_section in cell_sections:
+    cell_lines = cell_section.strip().split('\n')
+    cell_name = lst[i]
+    area_match = re.search(r'area\s*:\s*([\d.]+);', cell_section)
+    area = area_match.group(1) if area_match else "N/A"
+    i += 1
+    pin_names = re.findall(pin_pattern, cell_section)
+    print(f"{cell_name}, {area}, {', '.join(pin_names)}")
