@@ -1,0 +1,25 @@
+#!/usr/bin/tclsh
+puts "enter 1 for addition, 2 for subtraction. 3 for multiplication, 4 for division to be performed"
+gets stdin optr
+puts "enter the 1st number"
+gets stdin num1
+puts "enter the 2nd number"
+gets stdin num2
+switch $optr {
+1 { 
+    set result [expr $num1 + $num2] 
+   puts "addition result: $result"
+}
+2 {
+set result [expr $num1 - $num2]
+puts "subtraction result: $result" 
+}
+3 {
+set result [expr $num1 * $num2] 
+puts "multipliction result: $result"
+}
+4 {
+set result [expr $num1 / $num2] 
+puts "division result: $result"
+}
+}
