@@ -1,0 +1,17 @@
+#!/usr/bin/tclsh
+proc fibonacci {n} {
+set fibseries {}
+set a 0
+set b 1
+for {set i 0} {$i < $n} {incr i} {
+    lappend fibseries $a 
+    set next_term [expr {$a + $b}] 
+    set a $b 
+    set b $next_term
+   }
+return $fibseries
+}
+puts "Enter the number" 
+gets stdin numval
+set fibonseries [fibonacci $numval]
+puts [join $fibonseries " "]
