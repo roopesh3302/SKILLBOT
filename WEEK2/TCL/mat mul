@@ -1,0 +1,38 @@
+#!/usr/bin/tclsh
+proc matrix_multiply_2x2 {matrix1 matrix2} {
+    set result_matrix {}
+    set a [lindex [lindex $matrix1 0] 0]
+    set b [lindex [lindex $matrix1 0] 1]
+    set c [lindex [lindex $matrix1 1] 0]
+    set d [lindex [lindex $matrix1 1] 1]
+    set e [lindex [lindex $matrix2 0] 0]
+    set f [lindex [lindex $matrix2 0] 1]
+    set g [lindex [lindex $matrix2 1] 0]
+    set h [lindex [lindex $matrix2 1] 1]
+    set result_a [expr {$a*$e + $b*$g}]
+    set result_b [expr {$a*$f + $b*$h}]
+    set result_c [expr {$c*$e + $d*$g}]
+    set result_d [expr {$c*$f + $d*$h}]
+    lappend result_matrix [list $result_a $result_b]
+    lappend result_matrix [list $result_c $result_d]
+    return $result_matrix
+}
+puts "Enter the elements of the first matrix (2x2):"
+set matrix1 {}
+for {set i 0} {$i < 2} {incr i} {
+    puts "Enter row $i (two elements separated by space):"
+    gets stdin row
+    lappend matrix1 [split $row]
+}
+puts "Enter the elements of the second matrix (2x2):"
+set matrix2 {}
+for {set i 0} {$i < 2} {incr i} {
+    puts "Enter row $i (two elements separated by space):"
+    gets stdin row
+    lappend matrix2 [split $row]
+}
+set result [matrix_multiply_2x2 $matrix1 $matrix2]
+puts "Resultant Matrix:"
+foreach row $result {
+    puts [join $row "\t"]
+}
